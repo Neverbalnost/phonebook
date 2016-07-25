@@ -7,20 +7,62 @@
         <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
     </head>
     <body ng-app="phBook">
-        <div class="container">
+        <div class="container" ng-controller="phBookCtrl">
             <header>
                 <h1>PhoneBook</h1>
+                <h1 class="glyphicon glyphicon-plus" ng-click="setModal(list, 0, false)" data-toggle="modal" data-target="#phBookModal" ></h1>
             </header>
-            <section class="phonebook" ng-controller="phBookCtrl">
+            <section class="phonebook">
                 <table class="table table-hover">
                     <tr ng-repeat="person in list">
                         <td>{{person.name}} {{person.surname}}</td>
                         <td>{{person.phone}}</td>
                         <td ng-bind-html="person.comment"></td>
+                        <td>
+                            <span class="glyphicon glyphicon-pencil" ng-click="setModal(list, $index, true)" data-toggle="modal" data-target="#phBookModal"></span> 
+                            <span class="glyphicon glyphicon-remove" ng-click="remove(list, $index)"></span>
+                        </td>
                     </tr>
-                </table>
+                </table>              
             </section>
+            <div class="modal fade in" role="dialog" id="phBookModal" tabindex="-1" aria-labelledby="exampleModalLabel">
+                <div class="modal-dialog" role="document"> 
+                    <div class="modal-content"> 
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button> 
+                            <h4 class="modal-title" id="phBookModalLabel">Add New Contact</h4> 
+                        </div> 
+
+                        <div class="modal-body"> 
+                            <form> 
+                                <div class="form-group"> 
+                                    <label for="name" class="control-label">Name:</label> 
+                                    <input class="form-control" id="name"> 
+                                </div>
+                                <div class="form-group"> 
+                                    <label for="surname" class="control-label">Surname:</label> 
+                                    <input class="form-control" id="surname"> 
+                                </div>
+                                <div class="form-group"> 
+                                    <label for="phone" class="control-label">Phone:</label> 
+                                    <input class="form-control" id="phone"> 
+                                </div>                                                  
+                                <div class="form-group"> 
+                                    <label for="comment" class="control-label">Comment:</label> 
+                                    <textarea class="form-control" id="comment"></textarea> 
+                                </div> 
+                            </form>
+                         </div> 
+
+                         <div class="modal-footer"> 
+                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <button data-dismiss="modal" id="saveButton" type="button" ng-click="saveData()" class="btn btn-primary">Save</button> 
+                         </div> 
+                     </div> 
+                 </div> 
+             </div>              
         </div>
+        
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
         <script src="https://code.angularjs.org/1.5.5/angular.min.js"></script>
         <script src="https://code.angularjs.org/1.5.5/angular-sanitize.min.js"></script>
