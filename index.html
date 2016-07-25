@@ -1,0 +1,30 @@
+<!Doctype html>
+
+<html>
+    <head>
+        <title>My Phonebook</title>
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+    </head>
+    <body ng-app="phBook">
+        <div class="container">
+            <header>
+                <h1>PhoneBook</h1>
+            </header>
+            <section class="phonebook" ng-controller="phBookCtrl">
+                <table class="table table-hover">
+                    <tr ng-repeat="person in list">
+                        <td>{{person.name}} {{person.surname}}</td>
+                        <td>{{person.phone}}</td>
+                        <td ng-bind-html="person.comment"></td>
+                    </tr>
+                </table>
+            </section>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+        <script src="https://code.angularjs.org/1.5.5/angular.min.js"></script>
+        <script src="https://code.angularjs.org/1.5.5/angular-sanitize.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
