@@ -8,13 +8,17 @@
     </head>
     <body ng-app="phBook">
         <div class="container" ng-controller="phBookCtrl">
-            <header>
-                <h1>PhoneBook</h1>
-                <h1 class="glyphicon glyphicon-plus" ng-click="setModal(list, 0, false)" data-toggle="modal" data-target="#phBookModal" ></h1>
+            <header class="row">
+                <div class="col-md-11">
+                    <h1>PhoneBook</h1>
+                </div>
+                <div class="col-md-1 pull-right">
+                    <h1 class="glyphicon glyphicon-plus" ng-click="setModal(list, 0, false)" data-toggle="modal" data-target="#phBookModal" ></h1>
+                </div>
             </header>
             <section class="phonebook">
                 <table class="table table-hover">
-                    <tr ng-repeat="person in list">
+                    <tr ng-repeat="person in list track by person.phone">
                         <td>{{person.name}} {{person.surname}}</td>
                         <td>{{person.phone}}</td>
                         <td ng-bind-html="person.comment"></td>
